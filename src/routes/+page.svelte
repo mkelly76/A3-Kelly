@@ -17,6 +17,11 @@
      }
 
      $: isDone = $todoList.filter(item => item.done);
+     $: urgentDone = urgentList.filter(item => item.done);
+     $: importantDone = importantList.filter(item => item.done);
+     $: normalDone = normalList.filter(item => item.done);
+     $: lowDone = lowList.filter(item => item.done);
+     $: somedayDone = somedayList.filter(item => item.done);
      $: urgentList = $todoList.filter(item => item.urgent);
      $: importantList = $todoList.filter(item => item.important);
      $: normalList = $todoList.filter(item => item.normal);
@@ -46,7 +51,7 @@
           todoItem = '';
           urgent = false;
           important = false;
-          normal = false;
+          normal = true;
           low = false;
           someday = false;
      }
@@ -60,22 +65,27 @@
           updateList();
      }
      function clearUrgent() {
+          urgentList = urgentList.filter(item => !item.urgent)
           $todoList = $todoList.filter(item => !item.urgent)
           updateList();
      }
      function clearImportant() {
+          importantList = importantList.filter(item => !item.important)
           $todoList = $todoList.filter(item => !item.important)
           updateList();
      }
      function clearNormal() {
+          normalList = normalList.filter(item => !item.normal)
           $todoList = $todoList.filter(item => !item.normal)
           updateList();
      }
      function clearLow() {
+          lowList = lowList.filter(item => !item.low)
           $todoList = $todoList.filter(item => !item.low)
           updateList();
      }
      function clearSomeday() {
+          somedayList = somedayList.filter(item => !item.someday)
           $todoList = $todoList.filter(item => !item.someday)
           updateList();
      }
@@ -176,7 +186,7 @@
 <div class="agendazen urgentList" in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}}>
      <h2 class="urgent">Urgent</h2>
      <ul role="list" class="todoList">
-          {#each $todoList as item, index}
+          {#each urgentList as item, index}
                <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}}>
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
@@ -185,8 +195,8 @@
                </li>
           {/each}
      </ul>
-     {#if isDone.length > 0}
-     <button on:click={clearDone} class="removeBtn">REMOVE COMPLETED</button>
+     {#if urgentDone.length > 0}
+     <button on:click={clearUrgent} class="removeBtn">REMOVE COMPLETED URGENT TASKS</button>
      {/if}
 </div>
 {/if}
@@ -195,7 +205,7 @@
 <div class="agendazen importantList" in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}}>
      <h2 class="important">Important</h2>
      <ul role="list" class="todoList">
-          {#each $todoList as item, index}
+          {#each importantList as item, index}
                <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}} >
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
@@ -204,8 +214,8 @@
                </li>
           {/each}
      </ul>
-     {#if isDone.length > 0}
-     <button on:click={clearDone} class="removeBtn">REMOVE COMPLETED</button>
+     {#if importantDone.length > 0}
+     <button on:click={clearImportant} class="removeBtn">REMOVE COMPLETED IMPORTANT TASKS</button>
      {/if}
 </div>
 {/if}
@@ -214,7 +224,7 @@
 <div class="agendazen normalList" in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}}>
      <h2 class="normal">Normal</h2>
      <ul role="list" class="todoList">
-          {#each $todoList as item, index}
+          {#each normalList as item, index}
                <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}}>
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
@@ -223,8 +233,8 @@
                </li>
           {/each}
      </ul>
-     {#if isDone.length > 0}
-     <button on:click={clearDone} class="removeBtn">REMOVE COMPLETED</button>
+     {#if normalDone.length > 0}
+     <button on:click={clearNormal} class="removeBtn">REMOVE COMPLETED NORMAL TASKS</button>
      {/if}
 </div>
 {/if}
@@ -233,7 +243,7 @@
 <div class="agendazen lowList" in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}}>
      <h2 class="low">Low</h2>
      <ul role="list" class="todoList">
-          {#each $todoList as item, index}
+          {#each lowList as item, index}
                <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}} >
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
@@ -242,8 +252,8 @@
                </li>
           {/each}
      </ul>
-     {#if isDone.length > 0}
-     <button on:click={clearDone} class="removeBtn">REMOVE COMPLETED</button>
+     {#if lowDone.length > 0}
+     <button on:click={clearLow} class="removeBtn">REMOVE COMPLETED LOW TASKS</button>
      {/if}
 </div>
 {/if}
@@ -261,14 +271,17 @@
                </li>
           {/each}
      </ul>
-     {#if isDone.length > 0}
-     <button on:click={clearDone} class="removeBtn">REMOVE COMPLETED</button>
+     {#if somedayDone.length > 0}
+     <button on:click={clearSomeday} class="removeBtn">REMOVE COMPLETED SOMEDAY TASKS</button>
      {/if}
 </div>
 {/if}
-<div>
+<div class="bottom">
+     {#if isDone.length > 0}
+     <button on:click={clearDone} class="clear">REMOVE COMPLETED TASKS</button>
+     {/if}
      {#if $todoList.length > 0}
-     <button on:click={clearAll} class="clear">REMOVE ALL</button>
+     <button on:click={clearAll} class="clear">REMOVE ALL TASKS</button>
      {/if}
 </div>
 <style>
@@ -281,6 +294,9 @@
                0 2px 4px 0 rgb(0 0 0 / 20%),
                0 2.5rem 5rem 0 rgb(0 0 0 / 10%);
           border-radius: 3px;
+     }
+     .bottom {
+          margin: 2vw auto 5vw;
      }
      .tasks {
           margin: 5vw auto 1vw;
@@ -326,13 +342,14 @@
           font-weight: 700;
      }
      .importance {
-          padding: 2em 0;
+          padding: 0;
           display: flex;
           justify-content: space-evenly;
      }
      .btn {
           border: 1px solid darkslategrey;
           padding: 0.5em;
+          margin: 1em 0 0 0;
           cursor: pointer;
           display: inline-block;
           width: 100%;
@@ -350,7 +367,7 @@
           width: 450px;
           margin: 1vw auto;
           font-size: 1.1rem;
-          background-color: white;
+          background-color: rgba(255, 255, 255, 0.753);
           box-shadow:
                0 2px 4px 0 rgb(47 79 79 / 20%),
                0 2.5rem 5rem 0 rgb(47 79 79 / 10%);
@@ -363,7 +380,8 @@
           cursor: pointer;
           display: inline-block;
           font-size: 0.8rem;
-          width: 48%;
+          background-color: rgba(255, 255, 0, 0.05);
+          width: 60%;
           box-shadow:
                0 2px 4px 0 rgb(47 79 79 / 20%),
                0 2.5rem 5rem 0 rgb(47 79 79 / 10%);
@@ -380,7 +398,6 @@
           font-style: italic;
           border-bottom: rgba(47, 79, 79, 0.24) dotted 0.25px;
           display: flow-root;
-          padding: 1vw 0 0 0;
      }
      .urgentList li input[type="checkbox"] {
           width: 1.1em;
@@ -451,9 +468,6 @@
      }
      #someday {
           accent-color: #bd00ff;          
-     }
-     .importance {
-          padding: 0 0 1.5vw 0;
      }
 
      @media screen and (max-width: 450px) {
