@@ -431,4 +431,12 @@
           padding: 0 0 1.5vw 0;
      }
 
+     @media screen and (max-width: 450px) {
+     .importance {
+          flex-direction: column;
+     }
+     .clear {
+          width: 300px;
+     }
+}
 </style>
