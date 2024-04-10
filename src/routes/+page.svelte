@@ -46,7 +46,7 @@
           todoItem = '';
           urgent = false;
           important = false;
-          normal = true;
+          normal = false;
           low = false;
           someday = false;
      }
@@ -57,6 +57,26 @@
      }
      function clearDone() {
           $todoList = $todoList.filter(item => !item.done)
+          updateList();
+     }
+     function clearUrgent() {
+          $todoList = $todoList.filter(item => !item.urgent)
+          updateList();
+     }
+     function clearImportant() {
+          $todoList = $todoList.filter(item => !item.important)
+          updateList();
+     }
+     function clearNormal() {
+          $todoList = $todoList.filter(item => !item.normal)
+          updateList();
+     }
+     function clearLow() {
+          $todoList = $todoList.filter(item => !item.low)
+          updateList();
+     }
+     function clearSomeday() {
+          $todoList = $todoList.filter(item => !item.someday)
           updateList();
      }
      function clearAll() {
@@ -72,30 +92,35 @@
                     normal = false;
                     low = false;
                     someday = false;
+                    break;
                case 'important':
                     urgent = false;
                     important = true;
                     normal = false;
                     low = false;
                     someday = false;
+                    break;
                case 'normal':
                     urgent = false;
                     important = false;
                     normal = true;
                     low = false;
                     someday = false;
+                    break;
                case 'low':
                     urgent = false;
                     important = false;
                     normal = false;
                     low = true;
                     someday = false;
+                    break;
                case 'someday':
                     urgent = false;
                     important = false;
                     normal = false;
                     low = false;
                     someday = true;
+                    break;
           }
           console.log(selected);
      }
@@ -152,7 +177,7 @@
      <h2 class="urgent">Urgent</h2>
      <ul role="list" class="todoList">
           {#each $todoList as item, index}
-               <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}} class:urgent={item.urgent}>
+               <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}}>
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -171,7 +196,7 @@
      <h2 class="important">Important</h2>
      <ul role="list" class="todoList">
           {#each $todoList as item, index}
-               <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}} class:important={item.important}>
+               <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}} >
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -190,7 +215,7 @@
      <h2 class="normal">Normal</h2>
      <ul role="list" class="todoList">
           {#each $todoList as item, index}
-               <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}} class:normal={item.normal}>
+               <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}}>
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -209,7 +234,7 @@
      <h2 class="low">Low</h2>
      <ul role="list" class="todoList">
           {#each $todoList as item, index}
-               <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}} class:low={item.low}>
+               <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}} >
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -228,7 +253,7 @@
      <h2 class="someday">Someday</h2>
      <ul>
           {#each somedayList as item, index}
-               <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}}>
+               <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}} >
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
