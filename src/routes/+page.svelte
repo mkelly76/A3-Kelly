@@ -59,6 +59,10 @@
           $todoList = $todoList.filter(item => !item.done)
           updateList();
      }
+     function clearAll() {
+          $todoList = [];
+          localStorage.clear();
+     }
      function itemImportance(event) {
           selected = event.currentTarget.value;
           switch(selected) {
@@ -237,7 +241,11 @@
      {/if}
 </div>
 {/if}
-
+<div>
+     {#if $todoList.length > 0}
+     <button on:click={clearAll} class="clear">REMOVE ALL</button>
+     {/if}
+</div>
 <style>
      .agendazen {
           background: #ffffffb7;
@@ -258,7 +266,7 @@
          display: flow-root; 
      }
      .importantList {
-         outline: 4px dotted #ff0000; 
+         outline: 4px dotted #ff5c00; 
          outline-offset: -5px;  
          display: flow-root; 
      }
@@ -304,6 +312,20 @@
           display: inline-block;
           width: 100%;
           font-size: 1.1rem;
+          box-shadow:
+               0 2px 4px 0 rgb(47 79 79 / 20%),
+               0 2.5rem 5rem 0 rgb(47 79 79 / 10%);
+          border-radius: 25px;
+     }
+     .clear {
+          border: 1px solid darkslategrey;
+          padding: 0.5em;
+          cursor: pointer;
+          display: block;
+          width: 450px;
+          margin: 1vw auto;
+          font-size: 1.1rem;
+          background-color: white;
           box-shadow:
                0 2px 4px 0 rgb(47 79 79 / 20%),
                0 2.5rem 5rem 0 rgb(47 79 79 / 10%);
