@@ -50,7 +50,7 @@
                someday: someday,
                //selected: selected
           }];
-          //console.log($todoList);
+          console.log($todoList);
           updateList();
           todoItem = '';
           urgent = false;
@@ -59,11 +59,22 @@
           low = false;
           someday = false;
           selected = 'normal';
-          //console.log(selected); **NOTE** This simply returned a value of "true".. and the bind:group={selected} on the normal radio button below actually made the Normal radio not checked at all, even upon loading (although I could see it check on and off for a fraction of a second)
+          console.log(selected); 
+          //**NOTE** This simply returned a value of "true".. and the bind:group={selected} on the normal radio button below actually made the Normal radio not checked at all, even upon loading (although I could see it check on and off for a fraction of a second)
      }
-     function removeThis(index) {
-          $todoList.splice(index, 1);
-          $todoList = $todoList;
+     function removeThis(item) {
+          $todoList = $todoList.filter((t) => t.id !== item.id);
+          //$todoList = $todoList.filter(item => item.id !== id);
+          //urgentList = urgentList.filter(item => item.id !== id);
+          //dispatchEvent('remove', { id });
+          //let itemIdx = $todoList.findIndex(x => x.id == tid);
+          //$todoList.splice(itemIdx,1);
+          //let urgentIdx = urgentList.findIndex(x => x.id == tid);
+          //urgentList.splice(urgentIdx,1);
+          //importantList.splice(itemIdx,1);
+          //normalList.splice(itemIdx,1);
+          //lowList.splice(itemIdx,1);
+          //somedayList.splice(itemIdx,1);
           updateList();
      }
      function clearDone() {
@@ -202,8 +213,8 @@
                <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}}>
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
-                    <!-- svelte-ignore a11y-click-events-have-key-events 
-                    <span on:click={() => removeUrgent(index)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span> -->
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
+                    <span on:click={() => removeThis(item)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span> 
                </li>
           {/each}
      </ul>
@@ -221,8 +232,8 @@
                <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}} >
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
-                    <!-- svelte-ignore a11y-click-events-have-key-events 
-                    <span on:click={() => removeThis(index)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span> -->
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
+                    <span on:click={() => removeThis(item)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span> 
                </li>
           {/each}
      </ul>
@@ -240,8 +251,8 @@
                <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}}>
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
-                    <!-- svelte-ignore a11y-click-events-have-key-events 
-                    <span on:click={() => removeThis(index)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span> -->
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
+                    <span on:click={() => removeThis(item)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span> 
                </li>
           {/each}
      </ul>
@@ -259,8 +270,8 @@
                <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}} >
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
-                    <!-- svelte-ignore a11y-click-events-have-key-events 
-                    <span on:click={() => removeThis(index)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span> -->
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
+                    <span on:click={() => removeThis(item)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span> 
                </li>
           {/each}
      </ul>
@@ -278,8 +289,8 @@
                <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}} >
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
-                    <!-- svelte-ignore a11y-click-events-have-key-events 
-                    <span on:click={() => removeThis(index)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span> -->
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
+                    <span on:click={() => removeThis(item)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span> 
                </li>
           {/each}
      </ul>
