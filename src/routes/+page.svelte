@@ -44,9 +44,10 @@
                important: important,
                normal: normal,
                low: low,
-               someday: someday
+               someday: someday,
+               //selected: selected
           }];
-          console.log($todoList);
+          //console.log($todoList);
           updateList();
           todoItem = '';
           urgent = false;
@@ -54,6 +55,8 @@
           normal = true;
           low = false;
           someday = false;
+          //selected = normal;
+          //console.log(selected); **NOTE** This simply returned a value of "true".. and the bind:group={selected} on the normal radio button below actually made the Normal radio not checked at all, even upon loading (although I could see it check on and off for a fraction of a second)
      }
      function removeThis(index) {
           $todoList.splice(index, 1);
@@ -64,6 +67,12 @@
           $todoList = $todoList.filter(item => !item.done)
           updateList();
      }
+     //function removeUrgent(index) {
+     //     urgentList.splice(index,1);
+     //     urgentList = urgentList;
+     //     $todoList = $todoList.filter();
+     //     updateList();
+     //}
      function clearUrgent() {
           urgentList = urgentList.filter(item => !item.urgent)
           $todoList = $todoList.filter(item => !item.urgent)
@@ -146,7 +155,7 @@
           <input type="text" class="input__lg" bind:value={todoItem}>
           <h3>
                <!-- svelte-ignore a11y-label-has-associated-control -->
-               <label>Importance:</label>
+               <legend>Importance:</legend>
           </h3>
           <div class="importance">
                <label for="urgent" class="urgent">
@@ -190,8 +199,8 @@
                <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}}>
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
-                    <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <span on:click={() => removeThis(index)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span>
+                    <!-- svelte-ignore a11y-click-events-have-key-events 
+                    <span on:click={() => removeUrgent(index)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span> -->
                </li>
           {/each}
      </ul>
@@ -209,8 +218,8 @@
                <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}} >
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
-                    <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <span on:click={() => removeThis(index)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span>
+                    <!-- svelte-ignore a11y-click-events-have-key-events 
+                    <span on:click={() => removeThis(index)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span> -->
                </li>
           {/each}
      </ul>
@@ -228,8 +237,8 @@
                <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}}>
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
-                    <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <span on:click={() => removeThis(index)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span>
+                    <!-- svelte-ignore a11y-click-events-have-key-events 
+                    <span on:click={() => removeThis(index)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span> -->
                </li>
           {/each}
      </ul>
@@ -247,8 +256,8 @@
                <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}} >
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
-                    <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <span on:click={() => removeThis(index)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span>
+                    <!-- svelte-ignore a11y-click-events-have-key-events 
+                    <span on:click={() => removeThis(index)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span> -->
                </li>
           {/each}
      </ul>
@@ -266,8 +275,8 @@
                <li in:fly={{ y:10, duration: 500 }} eased = bounceIn(500) out:fade={{duration: 500}} >
                     <input type="checkbox" bind:checked={item.done} on:change={updateList}>
                     <span class:done={item.done}>{item.text}</span>
-                    <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <span on:click={() => removeThis(index)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span>
+                    <!-- svelte-ignore a11y-click-events-have-key-events 
+                    <span on:click={() => removeThis(index)} class="remove" role="button" aria-pressed="false" tabindex="0"><span class="visually-hidden">Remove This</span>&#128465</span> -->
                </li>
           {/each}
      </ul>
