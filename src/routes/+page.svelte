@@ -5,9 +5,10 @@
      import { writable } from 'svelte/store';
      let todoItem = '';
      let storedList;
-     let urgent, important, low, someday, selected; 
+     let urgent, important, low, someday; 
      let todoList = writable([]);
      let normal = true;
+     let selected = 'normal';
 
      if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
           storedList = localStorage.getItem('storedList');
@@ -55,7 +56,7 @@
           normal = true;
           low = false;
           someday = false;
-          //selected = normal;
+          selected = 'normal';
           //console.log(selected); **NOTE** This simply returned a value of "true".. and the bind:group={selected} on the normal radio button below actually made the Normal radio not checked at all, even upon loading (although I could see it check on and off for a fraction of a second)
      }
      function removeThis(index) {
@@ -165,7 +166,7 @@
                     <input type="radio" name="importance" id="important" value="important" on:change={itemImportance}> Important
                </label>
                <label for="normal" class="normal">
-                    <input type="radio" name="importance" id="normal" value="normal" on:change={itemImportance} checked> Normal
+                    <input bind:group={selected} type="radio" name="importance" id="normal" value="normal" on:change={itemImportance} checked> Normal
                </label>
                <label for="low" class="low">
                     <input type="radio" name="importance" id="low" value="low" on:change={itemImportance}> Low
