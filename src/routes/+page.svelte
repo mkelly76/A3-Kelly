@@ -5,7 +5,7 @@
      import { writable } from 'svelte/store';
      let todoItem = '';
      let storedList;
-     let urgent, important, low, someday; 
+     let urgent, important, low, someday, id; 
      let todoList = writable([]);
      let normal = true;
      let selected = 'normal';
@@ -38,7 +38,9 @@
           }
           //todoList.push(todoItem);
           //todoList = todoList;
+          id = Math.floor(100000 + Math.random() * 900000);
           $todoList = [...$todoList, {
+               id: id,
                text: todoItem,
                done: false,
                urgent: urgent,
@@ -456,18 +458,21 @@
      }
      .important {
           color: #FF5C00;
+          text-decoration-color: #FF5C00;
      }
      #important {
           accent-color: #ff5c00;
      }
      .normal {
           color: #001AFF; 
+          text-decoration-color: #001aff;
      }
      #normal {
           accent-color: #001AFF;
      }
      .low {
           color: #039200;
+          text-decoration-color: #039200;
      }
      #low {
           accent-color: #039200;
