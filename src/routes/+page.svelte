@@ -48,7 +48,6 @@
                normal: normal,
                low: low,
                someday: someday,
-               //selected: selected
           }];
           console.log($todoList);
           updateList();
@@ -60,33 +59,15 @@
           someday = false;
           selected = 'normal';
           console.log(selected); 
-          //**NOTE** This simply returned a value of "true".. and the bind:group={selected} on the normal radio button below actually made the Normal radio not checked at all, even upon loading (although I could see it check on and off for a fraction of a second)
      }
      function removeThis(item) {
           $todoList = $todoList.filter((t) => t.id !== item.id);
-          //$todoList = $todoList.filter(item => item.id !== id);
-          //urgentList = urgentList.filter(item => item.id !== id);
-          //dispatchEvent('remove', { id });
-          //let itemIdx = $todoList.findIndex(x => x.id == tid);
-          //$todoList.splice(itemIdx,1);
-          //let urgentIdx = urgentList.findIndex(x => x.id == tid);
-          //urgentList.splice(urgentIdx,1);
-          //importantList.splice(itemIdx,1);
-          //normalList.splice(itemIdx,1);
-          //lowList.splice(itemIdx,1);
-          //somedayList.splice(itemIdx,1);
           updateList();
      }
      function clearDone() {
           $todoList = $todoList.filter(item => !item.done)
           updateList();
      }
-     //function removeUrgent(index) {
-     //     urgentList.splice(index,1);
-     //     urgentList = urgentList;
-     //     $todoList = $todoList.filter();
-     //     updateList();
-     //}
      function clearUrgent() {
           urgentList = urgentList.filter(item => !item.urgent)
           $todoList = $todoList.filter(item => !item.urgent)
