@@ -68,7 +68,7 @@
           $todoList = $todoList.filter(item => !item.done)
           updateList();
      }
-     function clearUrgent() {
+     /*function clearUrgent() {
           urgentList = urgentList.filter(item => !item.urgent)
           $todoList = $todoList.filter(item => !item.urgent)
           updateList();
@@ -92,7 +92,7 @@
           somedayList = somedayList.filter(item => !item.someday)
           $todoList = $todoList.filter(item => !item.someday)
           updateList();
-     }
+     }*/
      function clearAll() {
           $todoList = [];
           localStorage.clear();
@@ -199,9 +199,9 @@
                </li>
           {/each}
      </ul>
-     {#if urgentDone.length > 0}
+     <!--{#if urgentDone.length > 0}
      <button on:click={clearUrgent} class="removeBtn">REMOVE COMPLETED URGENT TASKS</button>
-     {/if}
+     {/if}-->
 </div>
 {/if}
 
@@ -218,9 +218,9 @@
                </li>
           {/each}
      </ul>
-     {#if importantDone.length > 0}
+     <!--{#if importantDone.length > 0}
      <button on:click={clearImportant} class="removeBtn">REMOVE COMPLETED IMPORTANT TASKS</button>
-     {/if}
+     {/if}-->
 </div>
 {/if}
 
@@ -237,9 +237,9 @@
                </li>
           {/each}
      </ul>
-     {#if normalDone.length > 0}
+     <!--{#if normalDone.length > 0}
      <button on:click={clearNormal} class="removeBtn">REMOVE COMPLETED NORMAL TASKS</button>
-     {/if}
+     {/if}-->
 </div>
 {/if}
 
@@ -256,9 +256,9 @@
                </li>
           {/each}
      </ul>
-     {#if lowDone.length > 0}
+     <!--{#if lowDone.length > 0}
      <button on:click={clearLow} class="removeBtn">REMOVE COMPLETED LOW TASKS</button>
-     {/if}
+     {/if}-->
 </div>
 {/if}
 
@@ -275,9 +275,9 @@
                </li>
           {/each}
      </ul>
-     {#if somedayDone.length > 0}
+     <!--{#if somedayDone.length > 0}
      <button on:click={clearSomeday} class="removeBtn">REMOVE COMPLETED SOMEDAY TASKS</button>
-     {/if}
+     {/if}-->
 </div>
 {/if}
 <div class="bottom">
