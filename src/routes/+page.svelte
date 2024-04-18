@@ -290,7 +290,7 @@
 </div>
 <style>
      .agendazen {
-          background: #ffffffb7;
+          background: #ffffffe7;
           margin: 1vw auto;
           padding: 1rem;
           max-width: 500px;
